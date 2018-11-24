@@ -9,7 +9,8 @@
     "pack": "webpack",
     "pack:watch": "webpack --watch",
     "start:dev": "nodemon -r babel-register src/backend/index.js",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "seed": "node -r babel-register src/seeds/runSeeds.js"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.5",
