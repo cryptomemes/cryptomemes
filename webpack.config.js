@@ -1,5 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = {
   entry: [
@@ -12,6 +15,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.PUBLIC_ADDRESS': JSON.stringify(process.env.PUBLIC_ADDRESS || '0x627306090abaB3A6e1400e9345bC60c78a8BEf57'),
+      'process.env.HTTP_PROVIDER': JSON.stringify(process.env.HTTP_PROVIDER || 'http://127.0.0.1:7545'),
+  }),
   ],
   module: {
     rules: [

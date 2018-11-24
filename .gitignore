@@ -8,3 +8,4 @@ public/js
 .DS_Store?
 others
 build/
+.env
