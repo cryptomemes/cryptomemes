@@ -10,7 +10,8 @@
     "pack:watch": "webpack --watch",
     "start:dev": "nodemon -r babel-register src/backend/index.js",
     "commit": "git-cz",
-    "seed": "node -r babel-register src/seeds/runSeeds.js"
+    "seed": "node -r babel-register src/seeds/runSeeds.js",
+    "truffle": "truffle"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.5",
@@ -94,6 +95,7 @@
     "nodemon": "^1.17.5",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
+    "truffle": "^4.1.14",
     "truffle-solidity-loader": "^0.0.8",
     "url-loader": "^1.0.1",
     "webpack": "^3.5.5"
