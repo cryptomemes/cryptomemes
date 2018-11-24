@@ -2,6 +2,7 @@ node_modules/
 static/bundle.js
 .vscode
 dist
+*.tgz
 public/js
 .DS_Store
 .DS_Store?
