@@ -10,7 +10,11 @@ class NavBar extends Component {
     const { logout } = this.props
     return (
       <Header className="header">
-        <div className="logo" />
+        <a className="logo" >
+          <div className="text">
+            CryptoMemes
+          </div>
+        </a>
           <Menu
             theme="dark"
             mode="horizontal"
