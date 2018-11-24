@@ -1,0 +1,96 @@
+{
+  "name": "immutable-land-registry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "pack": "webpack",
+    "pack:watch": "webpack --watch",
+    "start:dev": "nodemon -r babel-register src/backend/index.js",
+    "commit": "git-cz"
+  },
+  "dependencies": {
+    "@feathersjs/authentication": "^2.1.5",
+    "@feathersjs/authentication-client": "^1.0.2",
+    "@feathersjs/authentication-jwt": "^2.0.1",
+    "@feathersjs/authentication-local": "^1.2.1",
+    "@feathersjs/client": "^3.5.0",
+    "@feathersjs/commons": "^1.4.1",
+    "@feathersjs/configuration": "^1.0.2",
+    "@feathersjs/express": "^1.2.2",
+    "@feathersjs/feathers": "^3.1.5",
+    "@feathersjs/rest-client": "^1.4.0",
+    "@feathersjs/socketio": "^3.2.1",
+    "@feathersjs/socketio-client": "^1.1.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "ethereumjs-util": "^5.2.0",
+    "feathers-mongodb": "^3.1.0",
+    "lodash": "^4.17.10",
+    "mongodb": "2.2.29",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
+    "recompose": "^0.27.1",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "truffle-contract": "^3.0.4",
+    "truffle-hdwallet-provider": "0.0.6",
+    "uuid": "^3.2.1",
+    "web3": "^1.0.0-beta.29"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/setup/"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.2.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-import": "^1.8.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "commitizen": "^2.10.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.8.2",
+    "jest": "^23.3.0",
+    "jest-cli": "^23.3.0",
+    "json-loader": "^0.5.7",
+    "less": "^3.5.0",
+    "less-loader": "^4.1.0",
+    "less-vars-to-js": "^1.2.1",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.17.5",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "truffle-solidity-loader": "^0.0.8",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.5.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "author": "",
+  "license": "ISC"
+}

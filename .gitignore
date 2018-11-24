@@ -1,0 +1,9 @@
+node_modules/
+static/bundle.js
+.vscode
+dist
+public/js
+.DS_Store
+.DS_Store?
+others
+build/
