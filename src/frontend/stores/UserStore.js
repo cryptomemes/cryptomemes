@@ -20,10 +20,6 @@ export default class UserStore {
   @action.bound
   setLoggedInUser(user) {
     this.loggedInUser = user;
-    notification.open({
-      message: 'Login Sucessful',
-      description: `You are now logged-in as ${user.username}`,
-    });
   }
 
   @action.bound

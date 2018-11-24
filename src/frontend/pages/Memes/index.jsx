@@ -38,7 +38,7 @@ const CardActionsContainer = styled.div`
   align-items: end;
   flex-direction: row;
 `
-const NavBar = () => (
+const NavBar = ({ logout }) => (
   <Header className="header">
     <div className="logo" />
     <Menu
@@ -49,7 +49,7 @@ const NavBar = () => (
     >
       <Menu.Item key="1">nav 1</Menu.Item>
       <Menu.Item key="2">nav 2</Menu.Item>
-      <Menu.Item key="3">nav 3</Menu.Item>
+      <Menu.Item key="3" onClick={logout}>Logout</Menu.Item>
     </Menu>
   </Header>
 )
@@ -87,9 +87,10 @@ class MemesPage extends Component {
   }
 
   render() {
+    const { authStore: { logout } } = this.props
     return (
       <Fragment>
-        <NavBar />
+        <NavBar logout={logout} />
         <MemeContainer>
           {
             sampleMemes.map(meme => 
@@ -107,4 +108,4 @@ class MemesPage extends Component {
   }
 }
 
-export default inject('memeStore')(observer(MemesPage))
+export default inject('memeStore', 'authStore')(observer(MemesPage))

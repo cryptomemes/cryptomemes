@@ -3,6 +3,7 @@ import { notification } from 'antd';
 import app from '../client';
 
 export default class AuthStore {
+  @observable isAuthenticating;
 
   constructor(root) {
     this.root = root;
@@ -15,7 +16,7 @@ export default class AuthStore {
       const token = await app.authenticate();
       const payload = await app.passport.verifyJWT(token.accessToken);
       const user = await app.service('api/users').get(payload.userId);
-      this.store.UserStore.setAuthenicatedUser(user);
+      this.root.userStore.setLoggedInUser(user);
     } catch (e) {
       console.log(e);
     }
@@ -64,7 +65,7 @@ export default class AuthStore {
   async logout() {
     try {
       await app.logout();
-      this.root.userStore.setAuthenicatedUser(null);
+      this.root.userStore.setLoggedInUser(null);
     } catch (e) {
       notification.open({
         message: 'Error on logging out account',

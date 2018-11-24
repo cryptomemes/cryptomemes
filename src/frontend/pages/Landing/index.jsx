@@ -65,18 +65,14 @@ class Landing extends React.Component {
     this.setState({ isLoading: true });
     
     const { error } = await checkUserProfile();
-    if (error === 'No user found') {
-      this.props.history.push('/login');
-    } else if (error) {
-      console.log('dfuq', error);
+    
+    if (error) {
       this.setState({ error });
     }
 
     try {
       await signup();
-      console.log('wtf', signup);
     } catch (e) {
-      console.log('the e:', e);
       this.setState({ error: 'Failed to signup' });
     }
     this.setState({ isLoading: false });

@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import { Provider } from 'mobx-react'
-import { Route, Switch, HashRouter as Router } from 'react-router-dom'
+import { Route, HashRouter as Router } from 'react-router-dom'
 import RootStore from './stores/'
-import MemesPage from './pages/Memes/'
-import LandingPage from './pages/Landing/'
+import Main from './Main'
 
 const store = new RootStore()
 window.store = store
@@ -12,8 +11,7 @@ const App = () => (
   <Provider {...store}>
     <Router>
       <Fragment>
-        <Route path="/" component={LandingPage} />
-        <Route path="/memes" component={MemesPage} />
+        <Route path="/" component={Main} />
       </Fragment>
     </Router>
   </Provider>
