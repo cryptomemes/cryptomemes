@@ -2,9 +2,10 @@ import React, { Fragment, Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Card, Row, Col, Layout, Menu, Icon } from 'antd';
 import styled from 'styled-components';
+import NavBar from './NavBar';
 
 const { Meta } = Card;
-const { Header, Footer } = Layout
+const { Footer } = Layout
 
 const sampleMemes = [
   {
@@ -38,21 +39,6 @@ const CardActionsContainer = styled.div`
   align-items: end;
   flex-direction: row;
 `
-const NavBar = ({ logout }) => (
-  <Header className="header">
-    <div className="logo" />
-    <Menu
-      theme="dark"
-      mode="horizontal"
-      defaultSelectedKeys={['2']}
-      style={{ lineHeight: '64px' }}
-    >
-      <Menu.Item key="1">nav 1</Menu.Item>
-      <Menu.Item key="2">nav 2</Menu.Item>
-      <Menu.Item key="3" onClick={logout}>Logout</Menu.Item>
-    </Menu>
-  </Header>
-)
 
 const PageFooter = () => (
   <Footer style={{ textAlign: 'center' }}>
