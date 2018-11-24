@@ -1,16 +1,12 @@
-import feathers from '@feathersjs/feathers';
-import socketio from '@feathersjs/socketio-client';
-import io from 'socket.io-client';
-import auth from '@feathersjs/authentication-client';
+import React, { Component } from 'react'
 
-const url = `http://${location.host}`;
-const socket = io(url);
 
-const app = feathers();
+class App extends Component {
+    render() {
+        return (
+            <div>WHat wat wat</div>
+        )
+    }
+}
 
-app.configure(socketio(socket));
-app.configure(auth({ storage: window.localStorage }));
-
-window.app = app;
-
-export default app;
+export default App
