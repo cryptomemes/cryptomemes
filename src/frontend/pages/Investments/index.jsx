@@ -1,7 +1,9 @@
-const Investments = () => (
-  <div>
+import React, { Fragment, Component } from 'react'
 
-  </div>
+const Investments = () => (
+  <Fragment>
+
+  </Fragment>
 )
 
 export default Investments

@@ -26,11 +26,11 @@ app
   .configure(configuration(path.join(process.cwd())))
   .post('/upload', (req, res) => {
     singleUpload(req, res, (err) => {
-      if (!req.file) {
-        return res.status(400).send('Image file required')
-      }
       if (err) {
         return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}] })
+      }
+      else if (!req.file) {
+        return res.status(400).send('Image file required')
       }
       else {
         return res.json({'url': req.file.location})

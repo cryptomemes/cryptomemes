@@ -5,3 +5,33 @@
   margin: 16px 24px 16px 0;
   float: left;
 }
+
+.upload-form > .input {
+  margin-bottom: 5px;
+}
+
+.logo {
+  display: flex;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  float: left;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo:hover {
+  border: none;
+  border: solid 2px rgba(255,255,255);
+  border-radius: 4px;
+}
+
+.logo .logo:hover {
+  color: #001529;
+}
+
+.logo > .text {
+  color: rgba(255,255,255);
+  font-family: "Arial";
+  font-style: bold;
+}

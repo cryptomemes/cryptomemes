@@ -21,12 +21,13 @@ export default class MemeStore {
       memesPromises.push(this.memeContract.memes.call(i));
     }
     const memes = await awaitAllPromises(memesPromises)
+    this.memes = memes
   }
 
   @action.bound
-  async createMeme(title, image) {
+  async createMeme(title, image, price) {
     try {
-      await this.memeContract.createMeme(title, image, { from: this.root.web3Store.getUserAddress() })
+      await this.memeContract.createMeme(title, image, { from: await this.root.web3Store.getUserAddress(), value: price })
     } catch (e) {
       console.log(e)
     }
