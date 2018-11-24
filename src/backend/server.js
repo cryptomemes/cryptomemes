@@ -7,8 +7,11 @@ import socketio from '@feathersjs/socketio';
 import configuration from '@feathersjs/configuration';
 import allServices from './services/';
 import authentication from './authentication';
+import upload from './upload';
 
 const app = express(feathers());
+
+const singleUpload = upload.single('image');
 
 app
   .configure(express.rest())
@@ -20,7 +23,20 @@ app
     app.channel('anonymous').join(connection);
   })
   .publish(() => app.channel('anonymous'))
-  .configure(configuration(path.join(process.cwd())));
+  .configure(configuration(path.join(process.cwd())))
+  .post('/upload', (req, res) => {
+    singleUpload(req, res, (err) => {
+      if (!req.file) {
+        return res.status(400).send('Image file required')
+      }
+      if (err) {
+        return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}] })
+      }
+      else {
+        return res.json({'url': req.file.location})
+      }
+    })
+  });
 
 const server = async () => {
   const db = await MongoClient.connect(app.get('mongoURI'));
