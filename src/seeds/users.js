@@ -1,9 +1,12 @@
 import createServer from '../backend/server';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const seed = async () => {
   const app = await createServer();
   const users = [
-    { publicAddress: '0x627306090abaB3A6e1400e9345bC60c78a8BEf57',
+    { publicAddress: process.env.PUBLIC_ADDRESS,
       username: 'Antonov',
       password: '123',
     },

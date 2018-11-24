@@ -21,7 +21,7 @@ const getWeb3 = new Promise(((resolve) => {
     } else {
       // Fallback to localhost if no web3 injection. We've configured this to
       // use the development console's port by default.
-      const provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545');
+      const provider = new Web3.providers.HttpProvider(process.env.HTTP_PROVIDER);
 
       web3 = new Web3(provider);
 
