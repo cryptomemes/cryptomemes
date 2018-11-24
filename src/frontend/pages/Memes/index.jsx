@@ -2,9 +2,8 @@ import React, { Fragment, Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Card, Row, Col, Layout, Menu, Icon } from 'antd';
 import styled from 'styled-components';
-import NavBar from './NavBar';
 
-import NavBar from '../../components/Nav';
+import NavBar from '../../components/NavBar';
 
 const { Meta } = Card;
 const { Footer } = Layout
