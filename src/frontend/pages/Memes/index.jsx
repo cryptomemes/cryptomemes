@@ -3,8 +3,10 @@ import { observer, inject } from 'mobx-react';
 import { Card, Row, Col, Layout, Menu, Icon } from 'antd';
 import styled from 'styled-components';
 
+import NavBar from '../../components/Nav';
+
 const { Meta } = Card;
-const { Header, Footer } = Layout
+const { Footer } = Layout
 
 const sampleMemes = [
   {
@@ -38,21 +40,6 @@ const CardActionsContainer = styled.div`
   align-items: end;
   flex-direction: row;
 `
-const NavBar = ({ logout }) => (
-  <Header className="header">
-    <div className="logo" />
-    <Menu
-      theme="dark"
-      mode="horizontal"
-      defaultSelectedKeys={['2']}
-      style={{ lineHeight: '64px' }}
-    >
-      <Menu.Item key="1">nav 1</Menu.Item>
-      <Menu.Item key="2">nav 2</Menu.Item>
-      <Menu.Item key="3" onClick={logout}>Logout</Menu.Item>
-    </Menu>
-  </Header>
-)
 
 const PageFooter = () => (
   <Footer style={{ textAlign: 'center' }}>
@@ -83,7 +70,9 @@ const MemeCard = ({ imageSrc, title, owner, liked }) => (
 )
 
 class MemesPage extends Component {
-  componentDidMount() {
+  async componentDidMount() {
+    const { memeStore: { fetchMemes }} = this.props
+    await fetchMemes()
   }
 
   render() {
@@ -108,4 +97,4 @@ class MemesPage extends Component {
   }
 }
 
-export default inject('memeStore', 'authStore')(observer(MemesPage))
+export default inject('memeStore', 'authStore', 'memeStore')(observer(MemesPage))
