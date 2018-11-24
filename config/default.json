@@ -1,0 +1,15 @@
+{
+    "mongoURI": "mongodb://localhost:27017/immutable-land",
+    "port": 3000,
+    "auth": {
+      "secret": "thisisasupersecret",
+      "service": "api/users",
+      "metamask": {
+        "name": "metamask",
+        "entity": "user",
+        "usernameField": "\\publicAddress",
+        "passwordField": "\\signature",
+        "service": "api/users"
+      }
+    }
+  }
