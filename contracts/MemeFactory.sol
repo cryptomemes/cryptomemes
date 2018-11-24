@@ -1,9 +1,10 @@
 pragma solidity ^0.4.24;
+import "./Admin.sol";
 
-contract MemeFactory {
-
+contract MemeFactory is Admin {
   Meme[] public memes;
   
+
   struct Upvote {
     uint createdAt; 
     address user;
@@ -93,8 +94,13 @@ contract MemeFactory {
     meme.hasVoted[msg.sender] = true;
   }
   
-  function getMemesLength() public view returns (uint) {
-    return memes.length;
+  function updateMemePrice(uint memeIndex, uint price) public onlyAdmin onlyOwner {
+    Meme storage meme = memes[memeIndex];
+    meme.price = price;
   }
-
+  
+  function getMemesLength() public view returns (uint) {
+      return memes.length;
+  }
+  
 }

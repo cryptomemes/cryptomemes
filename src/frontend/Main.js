@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import MemesPage from './pages/Memes/'
 import LandingPage from './pages/Landing/'
+import Loader from './components/Loader'
 
 class Main extends React.Component {
   componentDidMount() {
@@ -10,16 +11,17 @@ class Main extends React.Component {
   }
 
   render() {
-    const { userStore: { loggedInUser }, authStore: { isAuthenticating } } = this.props
+    const { userStore: { loggedInUser }, 
+    authStore: { isAuthenticating }, memeStore: { memeContract } } = this.props
 
-    if (isAuthenticating) return "Loading..."
+    if (isAuthenticating || !memeContract) return <Loader />
 
     return (
       <Fragment>
-      {loggedInUser ? <MemesPage /> : <LandingPage />}
-  </Fragment>
+        {loggedInUser ? <MemesPage /> : <LandingPage />}
+      </Fragment>
     )
   }
 }
 
-export default inject('userStore', 'authStore')(observer(Main))
+export default inject('userStore', 'authStore', 'memeStore')(observer(Main))

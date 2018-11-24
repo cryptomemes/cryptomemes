@@ -1,9 +1,9 @@
 import { observable, action } from 'mobx';
+import awaitAllPromises from '../utils/awaitAllPromises';
 
 export default class MemeStore {
-
   @observable memes = [];
-  memeContract;
+  @observable memeContract;
 
   constructor(root) {
     this.root = root;
@@ -15,9 +15,20 @@ export default class MemeStore {
 
   @action.bound
   async fetchMemes() {
-    if (!this.memeContract) throw new Error('Meme contract is not initialized');
-
-    // const memes = await this.memeContract.
+    const memesLength = (await this.memeContract.getMemesLength.call()).toNumber();
+    const memesPromises = [];
+    for (let i = 0; i < memesLength; i++) {
+      memesPromises.push(this.memeContract.memes.call(i));
+    }
+    const memes = await awaitAllPromises(memesPromises)
   }
 
+  @action.bound
+  async createMeme(title, image) {
+    try {
+      await this.memeContract.createMeme(title, image, { from: this.root.web3Store.getUserAddress() })
+    } catch (e) {
+      console.log(e)
+    }
+  }
 }
