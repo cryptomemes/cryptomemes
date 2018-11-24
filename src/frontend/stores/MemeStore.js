@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import awaitAllPromises from '../utils/awaitAllPromises';
+import awaitAllPromises from '../../utils/awaitAllPromises';
 
 export default class MemeStore {
   @observable memes = [];

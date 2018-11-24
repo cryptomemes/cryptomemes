@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import contract from 'truffle-contract';
-import memeContract from '../../../build/contracts/MemeFactory.json';
+import memeContract from '../../build/contracts/MemeFactory.json';
 
 const getContract = async (web3) => {
   const meme = contract(memeContract);
