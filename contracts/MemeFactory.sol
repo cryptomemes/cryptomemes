@@ -102,5 +102,27 @@ contract MemeFactory is Admin {
   function getMemesLength() public view returns (uint) {
       return memes.length;
   }
+
+  function getMeme(uint memeIndex) public view returns (
+    bytes32 photoImage,
+    bytes32 title,
+    uint price,
+    uint[] memory upvotes,
+    uint[] memory sellables
+  ) {
+    Meme storage meme = memes[memeIndex];
+    uint[] memory _upvotes = new uint[](meme.upvotesIndex);
+    uint[] memory _sellabes = new uint[](meme.sellablesIndex);
+
+    for (uint i = 0; i < meme.upvotesIndex; i++) {
+      _upvotes[i] = meme.upvotes[i].createdAt;
+    }
+
+    for (uint x = 0; i < meme.sellablesIndex; x++ ) {
+      _sellabes[x] = meme.sellables[x].percentage;
+    }
+
+    return (photoImage, title, price, _upvotes, _sellabes);
+   }
   
 }

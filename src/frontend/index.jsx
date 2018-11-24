@@ -2,8 +2,8 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
-import getWeb3 from './utils/getWeb3';
-import getContract from './utils/getContract';
+import getWeb3 from '../utils/getWeb3';
+import getContract from '../utils/getContract';
 
 getWeb3
   .then(async (res) => {
