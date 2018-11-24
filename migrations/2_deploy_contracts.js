@@ -1,4 +1,4 @@
-const LandTitle = artifacts.require('./LandTitle.sol');
+const LandTitle = artifacts.require('./MemeFactory.sol');
 
 module.exports = function(deployer) {
   deployer.deploy(LandTitle);
