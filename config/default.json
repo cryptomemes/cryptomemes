@@ -1,5 +1,5 @@
 {
-    "mongoURI": "mongodb://localhost:27017/immutable-land",
+    "mongoURI": "mongodb://localhost:27017/cryptomemes",
     "port": 3000,
     "auth": {
       "secret": "thisisasupersecret",

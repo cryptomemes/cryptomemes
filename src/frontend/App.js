@@ -1,16 +1,19 @@
-import feathers from '@feathersjs/feathers';
-import socketio from '@feathersjs/socketio-client';
-import io from 'socket.io-client';
-import auth from '@feathersjs/authentication-client';
+import React, { Component } from 'react'
+import NavBar from './components/layout/NavBar'
+import MainContent from './components/layout/MainContent'
+import Footer from './components/layout/Footer'
+import { Layout } from 'antd'
 
-const url = `http://${location.host}`;
-const socket = io(url);
+class App extends Component {
+    render() {
+        return (
+          <Layout>
+            <NavBar />
+            <MainContent />
+            <Footer />
+          </Layout>
+        )
+    }
+}
 
-const app = feathers();
-
-app.configure(socketio(socket));
-app.configure(auth({ storage: window.localStorage }));
-
-window.app = app;
-
-export default app;
+export default App
