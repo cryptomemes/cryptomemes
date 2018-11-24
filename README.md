@@ -1,5 +1,5 @@
-# immutable-land-registry
-An immutable land registry stored in the blockchain
+# cryptomemes
+Trade memes on the blockchain
 
 ## Get started
  * truffle migrate
