@@ -1,19 +1,22 @@
-import React, { Component } from 'react'
-import NavBar from './components/layout/NavBar'
-import MainContent from './components/layout/MainContent'
-import Footer from './components/layout/Footer'
-import { Layout } from 'antd'
+import React, { Fragment } from 'react'
+import { Provider } from 'mobx-react'
+import { Route, Switch, HashRouter as Router } from 'react-router-dom'
+import RootStore from './stores/'
+import MemesPage from './pages/Memes/'
+import LandingPage from './pages/Landing/'
 
-class App extends Component {
-    render() {
-        return (
-          <Layout>
-            <NavBar />
-            <MainContent />
-            <Footer />
-          </Layout>
-        )
-    }
-}
+const store = new RootStore()
+window.store = store
+
+const App = () => (
+  <Provider {...store}>
+    <Router>
+      <Fragment>
+        <Route path="/" component={LandingPage} />
+        <Route path="/memes" component={MemesPage} />
+      </Fragment>
+    </Router>
+  </Provider>
+)
 
 export default App
