@@ -1,8 +1,7 @@
-import React, { Fragment, Component } from 'react'
-import { Card, Row, Col, Layout, Menu, Icon, DropDown } from 'antd';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import { Layout, Menu, } from 'antd';
 import UploadModal from './Modal';
-import '../../css/antd.css';
+import '../css/antd.css';
 
 const { Header } = Layout
 
@@ -22,11 +21,11 @@ class NavBar extends Component {
             }}
           >
             <Menu.Item key="1">All</Menu.Item>
-            <Menu.Item key="1">Profile</Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="2">Profile</Menu.Item>
+            <Menu.Item key="3">
               <UploadModal />
             </Menu.Item>
-            <Menu.Item key="3" onClick={logout}>Logout</Menu.Item>
+            <Menu.Item key="4" onClick={logout}>Logout</Menu.Item>
           </Menu>
       </Header>
     )
