@@ -28,9 +28,9 @@ const getMultiplierValue = (currentValue, currentBracket) => {
 }
 
 const computeVirality = (upvotes) => {
-    const now = Date.now()
-    const oneMinuteAgo = now - 60000
-    const twoMinutesAgo = now - 120000
+    const now = Math.floor(Date.now() / 1000)
+    const oneMinuteAgo = now - 60
+    const twoMinutesAgo = now - 120
     const currentRate = upvotes.filter(upvote => oneMinuteAgo <= upvote && now >= upvote).length
     const previousRate = upvotes.filter(upvote => twoMinutesAgo <= upvote && oneMinuteAgo > upvote).length
     const acceleration = currentRate - previousRate

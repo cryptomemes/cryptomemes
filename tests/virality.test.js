@@ -3,16 +3,17 @@ import MockDate from 'mockdate'
 import computeVirality from '../src/backend/virality'
 
 const fixtures = [
-    1543079319021,
-    1543079320021,
-    1543085321021,
-    1543089322021,
-    1543089323021,
-    1543089324021,
+    1543079319,
+    1543079320,
+    1543085321,
+    1543089322,
+    1543089323,
+    1543089324,
 ]
 
 const generateFixtures = (numElements) => {
-    return Array(numElements).fill(Date.now())
+    const now = Math.floor(Date.now() / 1000)
+    return Array(numElements).fill(now)
 }
 
 describe('Virality', () => {
