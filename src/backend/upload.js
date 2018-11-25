@@ -2,7 +2,9 @@ import multer from 'multer'
 import multerS3 from 'multer-s3'
 import aws from 'aws-sdk'
 import crypto from 'crypto'
+import dotenv from 'dotenv'
 
+dotenv.load()
 
 aws.config.update({
     secretAccessKey: process.env.AWS_SECRET_KEY,
