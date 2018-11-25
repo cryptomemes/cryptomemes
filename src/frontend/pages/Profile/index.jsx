@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 import React, { Fragment, Component } from 'react';
 import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
 import { Row, Col, Card, Icon, Avatar } from 'antd';
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
+=======
+import React, { Fragment, Component } from 'react'
+import styled from 'styled-components'
+import { inject, observer } from 'mobx-react'
+import { Row, Col, Card, Icon } from 'antd'
+
+import Loader from '../../components/Loader'
+import SellSharesModal from '../../components/SellSharesModal'
+>>>>>>> Add sell shares
 
 const { Meta } = Card;
 
@@ -33,7 +43,7 @@ const MemeContainer = styled.div`
   flex-direction: row;
 `;
 
-const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick }) => (
+const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick, memeIndex }) => (
   <Row style={{ padding: '2em' }}>
     <Col span={18}>
       <Card
@@ -42,7 +52,10 @@ const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick }) => 
         cover={<img src={imageSrc} />}
         actions={[
           <a onClick={() => onLikeClick(index)}> <Icon type="like" style={{ color: (liked ? 'blue' : 'gray') }}  /> </a>,
-          <div />,
+          <SellSharesModal
+            memeIndex={memeIndex}
+            memeTitle={title}
+          />,
           <div>{`Buy limit: ${saleLimit}`}</div>
         ]}
       >
@@ -63,7 +76,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { memeStore : { usersMemes } } = this.props;
+    const { memeStore : { usersMemes, isMemeFetching } } = this.props;
     console.log(usersMemes)
     return (
       <Fragment>
@@ -75,13 +88,16 @@ class ProfilePage extends Component {
           </Hero>
           <div className='owned-memes'>
             <H3> OWNED MEMES </H3>
-            {usersMemes.map(meme => <MemeCard
-              imageSrc={`https://s3-ap-southeast-1.amazonaws.com/crypto-memes/${meme.photoImage}`}
-              title={meme.title}
-              key={meme.title}
-              price={meme.price}
-              saleLimit={meme.sellables.reduce((acc, val) => { return acc + val}, 0)}
-            />)}
+            {
+              isMemeFetching ? <Loader /> :
+              usersMemes.map(meme => <MemeCard
+                imageSrc={`https://s3-ap-southeast-1.amazonaws.com/crypto-memes/${meme.photoImage}`}
+                title={meme.title}
+                key={meme.title}
+                price={meme.price}
+                saleLimit={meme.sellables.reduce((acc, val) => { return acc + val}, 0)}
+              />)
+            }
           </div>
         </MemeContainer>
         <Footer />
