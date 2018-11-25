@@ -52,7 +52,7 @@ export default class MemeStore {
   @action.bound
   async upvoteMeme(memeIndex) {
     try {
-      await this.memeContract.upvoteMeme(memeIndex, { from: await this.root.web3Store.getUserAddress(), value: 0})
+      await this.memeContract.upvoteMeme(memeIndex, { from: await this.root.web3Store.getUserAddress() })
     } catch (e) {
       console.log(e)
     }
