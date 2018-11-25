@@ -7,5 +7,4 @@ public/js
 .DS_Store
 .DS_Store?
 others
-build/
 .env
