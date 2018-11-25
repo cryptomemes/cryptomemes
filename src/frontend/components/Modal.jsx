@@ -44,7 +44,7 @@ class UploadModal extends Component {
         const { data: { url } } = res
         const imageId = url.split('/')[3]
 
-        await createMeme(title, imageId)
+        await createMeme(title, imageId, price)
 
         this.setState({
           visible: false,

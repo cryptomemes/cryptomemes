@@ -103,12 +103,10 @@ contract MemeFactory is Admin {
       return memes.length;
   }
 
-  function getMeme(uint memeIndex) public view returns (
-    bytes32 photoImage,
-    bytes32 title,
-    uint price,
+  function getMemeDetails(uint memeIndex) public view returns (
     uint[] memory upvotes,
-    uint[] memory sellables
+    uint[] memory sellables,
+    address[] memory owners
   ) {
     Meme storage meme = memes[memeIndex];
     uint[] memory _upvotes = new uint[](meme.upvotesIndex);
@@ -118,11 +116,11 @@ contract MemeFactory is Admin {
       _upvotes[i] = meme.upvotes[i].createdAt;
     }
 
-    for (uint x = 0; i < meme.sellablesIndex; x++ ) {
+    for (uint x = 0; x < meme.sellablesIndex; x++ ) {
       _sellabes[x] = meme.sellables[x].percentage;
     }
 
-    return (photoImage, title, price, _upvotes, _sellabes);
+    return (_upvotes, _sellabes, meme.owners);
    }
   
 }
