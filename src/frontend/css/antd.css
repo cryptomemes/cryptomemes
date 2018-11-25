@@ -1,9 +1,10 @@
 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(212,12,2,.2);
+  background: papayawhip;
   margin: 16px 24px 16px 0;
   float: left;
+  border: 1px solid #fff;
 }
 
 .upload-form > .input {
@@ -22,8 +23,6 @@
 
 .logo:hover {
   border: none;
-  border: solid 2px rgba(255,255,255);
-  border-radius: 4px;
 }
 
 .logo .logo:hover {
@@ -31,7 +30,7 @@
 }
 
 .logo > .text {
-  color: rgba(255,255,255);
+  color: #001529;
   font-family: "Arial";
   font-style: bold;
 }
