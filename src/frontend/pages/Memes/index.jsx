@@ -6,7 +6,7 @@ import BuySharesModal from '../../components/BuySharesModal'
 import NavBar from '../../components/NavBar';
 import Loader from '../../components/Loader';
 
-const { Meta } = Card;
+const { Meta } = Card
 const { Footer } = Layout
 
 const MemeContainer = styled.div`
@@ -65,13 +65,14 @@ class MemesPage extends Component {
   async handleLikeClick(index) {
     console.log('Clicked like', index)
     const { memeStore: { upvoteMeme } } = this.props
+    await upvoteMeme(index)
   }
 
   render() {
     const { authStore: { logout }, memeStore: { memes, isMemeFetching } } = this.props
     return (
       <Fragment>
-        <NavBar logout={logout} />
+        <NavBar />
         <MemeContainer>
           {
             isMemeFetching ? <Loader /> :

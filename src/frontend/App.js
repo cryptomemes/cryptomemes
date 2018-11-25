@@ -16,11 +16,7 @@ const App = () => (
     <Router>
       <Switch>
         <Route exact path="/" component={Main} />
-        <Fragment>
-          <NavBar />
-            <Route exact path="/profile" component={Profile} />
-          <Footer />
-        </Fragment>
+        <Route exact path="/profile" component={Profile} />
       </Switch>
     </Router>
   </Provider>

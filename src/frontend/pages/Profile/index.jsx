@@ -1,17 +1,17 @@
 import React, { Fragment, Component } from 'react';
 import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
-import { Row, Col, Card, Icon } from 'antd';
+import { Row, Col, Card, Icon, Avatar } from 'antd';
+import Footer from '../../components/Footer';
+import NavBar from '../../components/NavBar';
 
 const { Meta } = Card;
 
 const Hero = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 `;
 
 const H2 = styled.h2`
@@ -25,14 +25,6 @@ const H3 = styled.h3`
   font-size: 2em;
   margin-top: 1em;
 `
-
-const ProfilePicture = styled.img`
-  width: 30em;
-  height: auto;
-  border: 1px solid #999;
-	background-color: #fcfcfc;
-	padding: 4px;
-`;
 
 const MemeContainer = styled.div`
   display: flex;
@@ -75,10 +67,13 @@ class ProfilePage extends Component {
     console.log(usersMemes)
     return (
       <Fragment>
-        <Hero>
-          <H2> Antonov </H2>
-          <ProfilePicture src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=378ca7e2f7edc396bcdd72991cba78c5&auto=format&fit=crop&w=1950&q=80" />
-          <Fragment>
+        <NavBar />
+        <MemeContainer style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+          <Hero>
+            <Avatar size={128} style={{ margin: '16px' }} src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=378ca7e2f7edc396bcdd72991cba78c5&auto=format&fit=crop&w=1950&q=80" />
+            <H2> Antonov </H2>
+          </Hero>
+          <div className='owned-memes'>
             <H3> OWNED MEMES </H3>
             {usersMemes.map(meme => <MemeCard
               imageSrc={`https://s3-ap-southeast-1.amazonaws.com/crypto-memes/${meme.photoImage}`}
@@ -87,8 +82,9 @@ class ProfilePage extends Component {
               price={meme.price}
               saleLimit={meme.sellables.reduce((acc, val) => { return acc + val}, 0)}
             />)}
-          </Fragment>
-        </Hero>
+          </div>
+        </MemeContainer>
+        <Footer />
       </Fragment>
     )
   }
