@@ -39,7 +39,7 @@ const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick, index
         cover={<img src={imageSrc} />}
         actions={[
           <a onClick={() => onLikeClick(index)}> <Icon type="like" style={{ color: (liked ? 'blue' : 'gray') }}  /> </a>,
-          <BuySharesModal />,
+          <BuySharesModal memeIndex={index} />,
           <div>{`Buy limit: ${saleLimit}`}</div>
         ]}
       >
@@ -72,7 +72,7 @@ class MemesPage extends Component {
     const { authStore: { logout }, memeStore: { memes, isMemeFetching } } = this.props
     return (
       <Fragment>
-        <NavBar />
+        <NavBar logout={logout}/>
         <MemeContainer>
           {
             isMemeFetching ? <Loader /> :

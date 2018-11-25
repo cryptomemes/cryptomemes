@@ -2,11 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { Modal, Button, Icon, Input } from 'antd'
 import { inject, observer } from 'mobx-react'
 
-class BuySharesModal extends Component {
+class SellSharesModal extends Component {
   state = {
+    ModalText: 'Buy Shares Component here',
     visible: false,
     confirmLoading: false,
-    percentageValue: 0
+    percentage: 0
   }
 
   showModal = () => {
@@ -16,54 +17,60 @@ class BuySharesModal extends Component {
   }
 
   handleOk = async () => {
-    const { memeStore: { buyMeme }, memeIndex } = this.props
-    const { percentageValue } = this.state
+    const { memeIndex, memeStore: { sellMemeShare } } = this.props
+    const { percentage } = this.state
+
     this.setState({
-      confirmLoading: true,
-    });
-    await buyMeme(memeIndex, percentageValue)
+      confirmLoading: true
+    })
+
+    await sellMemeShare(memeIndex, percentage)
+
     this.setState({
       visible: false,
       confirmLoading: false,
-      percentageValue: 0
+      percentage: 0,
     })
   }
 
   handleCancel = () => {
     this.setState({
       visible: false,
+      confirmLoading: false,
+      percentage: 0
     });
   }
 
-  onValueChange = (e) => {
+  handleTextChange = (e) => {
     this.setState({
-      percentageValue: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
   render() {
-    const { visible, confirmLoading, ModalText, percentageValue } = this.state;
+    const { memeTitle } = this.props
+    const { visible, confirmLoading, ModalText, percentage } = this.state;
     return (
       <div>
         <div onClick={this.showModal}>
           <Icon type="dollar" />
+          {' '}
+          Sell
         </div>
-        <Modal title="Title"
+        <Modal title={`Sell '${memeTitle}'`}
           visible={visible}
           onOk={this.handleOk}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
         >
-          <form>
+          <form className="upload-form">
             <Input
               className="input"
-              style={{ marginBottom: 5 }}
               type="number"
+              value={percentage}
               name="percentage"
-              placeholder="Enter percentage"
-              value={percentageValue}
-              onChange={this.onValueChange}
-              addonAfter="%"
+              placeholder="Enter desire percentage to sell"
+              onChange={this.handleTextChange}
             />
           </form>
         </Modal>
@@ -72,4 +79,4 @@ class BuySharesModal extends Component {
   }
 }
 
-export default inject('memeStore')(observer(BuySharesModal))
+export default inject('memeStore')(observer(SellSharesModal))
