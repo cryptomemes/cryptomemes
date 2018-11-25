@@ -49,9 +49,8 @@ const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick }) => 
         style={{ width: '30em' }}
         cover={<img src={imageSrc} />}
         actions={[
-          <a onClick={onLikeClick}>
-            <Icon type="like" style={{ color: (liked ? 'blue' : 'gray') }}  />
-          </a>,
+          <a onClick={() => onLikeClick(index)}> <Icon type="like" style={{ color: (liked ? 'blue' : 'gray') }}  /> </a>,
+          <div />,
           <div>{`Buy limit: ${saleLimit}`}</div>
         ]}
       >
@@ -65,12 +64,15 @@ const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick }) => 
 );
 
 class ProfilePage extends Component {
-  componentDidMount() {
-
+  async componentDidMount() {
+    const { memeStore: { fetchMemes, getUserMemes } } = this.props;
+    await fetchMemes()
+    await getUserMemes()
   }
 
   render() {
     const { memeStore : { usersMemes } } = this.props;
+    console.log(usersMemes)
     return (
       <Fragment>
         <Hero>

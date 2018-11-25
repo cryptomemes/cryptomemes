@@ -18,7 +18,7 @@ const App = () => (
         <Route exact path="/" component={Main} />
         <Fragment>
           <NavBar />
-          <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
           <Footer />
         </Fragment>
       </Switch>

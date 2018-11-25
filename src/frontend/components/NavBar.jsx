@@ -8,7 +8,7 @@ import '../css/antd.css';
 const HeaderText = styled.h1`
   font-familiy: "Permanent Marker";
   color: white;
-  font-size: 3em;
+  font-size: 2em;
   margin-left: 5em;
 `;
 
@@ -20,11 +20,9 @@ class NavBar extends Component {
     return (
       <Header className="header">
         <Link to="/">
-          <a className="logo" style={{ backgroundColor: '#001529' }} >
             {/* <div className="text"> */}
-              <HeaderText> CryptoMemes </HeaderText>
+            <HeaderText className="logo"> CryptoMemes </HeaderText>
             {/* </div> */}
-          </a>
         </Link>
           <Menu
             theme="dark"
