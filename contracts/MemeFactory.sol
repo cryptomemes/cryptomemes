@@ -79,6 +79,8 @@ contract MemeFactory is Admin {
           sellable.percentage = 0;
         }
     }
+
+    meme.owners.push(msg.sender);
   }
   
   function sellMemeShare(uint memeIndex, uint sharePercentage) public {
