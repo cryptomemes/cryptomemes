@@ -1,19 +1,12 @@
-<<<<<<< HEAD
 import React, { Fragment, Component } from 'react';
 import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
 import { Row, Col, Card, Icon, Avatar } from 'antd';
+
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
-=======
-import React, { Fragment, Component } from 'react'
-import styled from 'styled-components'
-import { inject, observer } from 'mobx-react'
-import { Row, Col, Card, Icon } from 'antd'
-
 import Loader from '../../components/Loader'
 import SellSharesModal from '../../components/SellSharesModal'
->>>>>>> Add sell shares
 
 const { Meta } = Card;
 
