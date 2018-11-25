@@ -35,3 +35,10 @@
   font-family: "Arial";
   font-style: bold;
 }
+
+.ant-btn.btn-link {
+  color: #1890FF;
+  border: none;
+  background: none;
+  box-shadow: none;
+}

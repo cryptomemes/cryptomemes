@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Button, Icon } from 'antd';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
+
+import SignupForm from '../../components/SignupForm'
 
 const Page = styled.div`
     width: 100vw;
@@ -58,6 +60,7 @@ class Landing extends React.Component {
   state = {
     isLoading: false,
     error: null,
+    isSignup: false
   }
 
   onContinue = async () => {
@@ -78,27 +81,69 @@ class Landing extends React.Component {
     this.setState({ isLoading: false });
   }
 
+  renderSignInWithMetaMask = () => {
+    return (
+      <Fragment>
+        <H2> CryptoMemes</H2>
+        <Metamask src="http://res.cloudinary.com/depjh17m6/image/upload/v1536813692/Etc/metamask.png" alt="metamask" />
+        <Button type="primary" onClick={this.onContinue} style={{ fontSize: '20px', width: '275px' }} loading={this.state.isLoading}>
+          {
+            (this.state.isLoading) && 'Verifying'
+          }
+          {
+            (!this.state.isLoading && !this.state.error) && 'Continue with metamask'
+          }
+          {
+            !this.state.isLoading && this.state.error
+          }
+          {
+            !this.state.isLoading &&
+            (this.state.error ? <Icon type="close-circle" theme="outlined" /> : <Icon type="check-circle" theme="outlined" />)
+          }
+        </Button>
+        <Button
+          className="btn-link"
+          onClick={this.handleToggleSignup}>
+          Don't have an account? Sign up here
+        </Button>
+      </Fragment>
+    )
+  }
+
+  renderSignupForm = () => {
+    return (
+      <Fragment>
+        <H2>Sign up</H2>
+        <SignupForm />
+        <Button
+          className="btn-link"
+          onClick={this.handleToggleSignup}
+        >
+          Back to Metamask Sign in
+        </Button>
+      </Fragment>
+    )
+  }
+
+  handleToggleSignup = () => {
+    this.setState({
+      isSignup: !this.state.isSignup
+    })
+  }
+
   render() {
+    const { isSignup } = this.state
+
     return (
       <Page>
         <Hero>
-          <H2> CryptoMemes</H2>
-          <Metamask src="http://res.cloudinary.com/depjh17m6/image/upload/v1536813692/Etc/metamask.png" alt="metamask" />
-          <Button type="primary" onClick={this.onContinue} style={{ fontSize: '20px', width: '275px' }} loading={this.state.isLoading}>
-            {
-              (this.state.isLoading) && 'Verifying'
-            }
-            {
-              (!this.state.isLoading && !this.state.error) && 'Continue with metamask'
-            }
-            {
-              !this.state.isLoading && this.state.error
-            }
-            {
-              !this.state.isLoading &&
-              (this.state.error ? <Icon type="close-circle" theme="outlined" /> : <Icon type="check-circle" theme="outlined" />)
-            }
-          </Button>
+          {isSignup
+            ? (
+              this.renderSignupForm()
+            ) : (
+              this.renderSignInWithMetaMask()
+            )
+          }
         </Hero>
         <Explainer>
           <Explanation>
