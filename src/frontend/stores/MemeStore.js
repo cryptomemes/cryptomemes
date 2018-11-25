@@ -64,11 +64,22 @@ export default class MemeStore {
     console.log(this.memes)
     this.usersMemes = this.memes.filter(meme => meme.owners.map(owner => owner.toString().toUpperCase()).includes(userAddress.toString().toUpperCase())) 
   }
-
+  
   @action.bound
   async sellMemeShare(memeIndex, sharePercentage) {
     try {
       await this.memeContract.sellMemeShare(memeIndex, sharePercentage, { from: await this.root.web3Store.getUserAddress() })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  @action.bound
+  async buyMeme(memeIndex, buyPercentage) {
+    try {
+      const currentMeme = this.memes.find(meme => meme.index === memeIndex)
+      const buyingPrice = currentMeme.price * (buyPercentage/100)
+      await this.memeContract.buyMemeShares(memeIndex, buyPercentage, { from: await this.root.web3Store.getUserAddress(), value: buyingPrice})
     } catch (e) {
       console.log(e)
     }
