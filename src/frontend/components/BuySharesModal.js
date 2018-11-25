@@ -15,20 +15,18 @@ class BuySharesModal extends Component {
     });
   }
 
-  handleOk = () => {
+  handleOk = async () => {
     const { memeStore: { buyMeme }, memeIndex } = this.props
     const { percentageValue } = this.state
     this.setState({
       confirmLoading: true,
     });
-    async (res) => {
-      await buyMeme(memeIndex, percentageValue)
-      this.setState({
-        visible: false,
-        confirmLoading: false,
-        percentageValue: 0
-      })
-    }
+    await buyMeme(memeIndex, percentageValue)
+    this.setState({
+      visible: false,
+      confirmLoading: false,
+      percentageValue: 0
+    })
   }
 
   handleCancel = () => {
