@@ -36,7 +36,7 @@ const MemeContainer = styled.div`
   flex-direction: row;
 `;
 
-const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick, memeIndex }) => (
+const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick, memeIndex, upvotes }) => (
   <Row style={{ padding: '2em' }}>
     <Col span={18}>
       <Card
@@ -44,7 +44,11 @@ const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick, memeI
         style={{ width: '30em' }}
         cover={<img src={imageSrc} />}
         actions={[
-          <a onClick={() => onLikeClick(index)}> <Icon type="like" style={{ color: (liked ? 'blue' : 'gray') }}  /> </a>,
+          <a onClick={() => onLikeClick(index)}>
+            {upvotes}
+            {' '}
+            <Icon type="like" style={{ color: (liked ? 'blue' : 'gray') }} />
+          </a>,
           <SellSharesModal
             memeIndex={memeIndex}
             memeTitle={title}
@@ -90,6 +94,7 @@ class ProfilePage extends Component {
                 price={meme.price}
                 saleLimit={meme.sellables.reduce((acc, val) => { return acc + val}, 0)}
                 memeIndex={meme.index}
+                upvotes={meme.upvotes.length}
               />)
             }
           </div>
