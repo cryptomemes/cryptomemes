@@ -30,7 +30,7 @@ const PageFooter = () => (
   </Footer>
 )
 
-const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick }) => (
+const MemeCard = ({ imageSrc, title, owner, liked, saleLimit, onLikeClick, index }) => (
   <Row style={{ padding: '2em' }}>
     <Col span={18}>
       <Card
@@ -38,7 +38,7 @@ const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick }) => 
         style={{ width: '30em' }}
         cover={<img src={imageSrc} />}
         actions={[
-          <a onClick={onLikeClick}>
+          <a onClick={() => onLikeClick(index)}>
             <Icon type="like" style={{ color: (liked ? 'blue' : 'gray') }}  />
           </a>,
           <BuySharesModal />,
@@ -55,13 +55,19 @@ const MemeCard = ({ imageSrc, title, price, liked, saleLimit, onLikeClick }) => 
 )
 
 class MemesPage extends Component {
+  constructor (props) {
+    super(props)
+    this.handleLikeClick = this.handleLikeClick.bind(this)
+  }
   async componentDidMount() {
     const { memeStore: { fetchMemes }} = this.props
     await fetchMemes()
   }
 
-  handleLikeClick = () => {
-    console.log('Clicked like')
+  async handleLikeClick (memeIndex) {
+    console.log('click', memeIndex)
+    const { memeStore: { upvoteMeme } } = this.props    
+    await upvoteMeme(memeIndex)
   }
 
   render() {
@@ -79,6 +85,7 @@ class MemesPage extends Component {
                 key={meme.title}
                 price={meme.price}
                 saleLimit={meme.sellables.reduce((acc, val) => { return acc + val}, 0)}
+                index={meme.index}
                 onLikeClick={this.handleLikeClick}
               />) 
           }
