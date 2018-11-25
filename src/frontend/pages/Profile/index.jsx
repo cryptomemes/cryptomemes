@@ -89,6 +89,7 @@ class ProfilePage extends Component {
                 key={meme.title}
                 price={meme.price}
                 saleLimit={meme.sellables.reduce((acc, val) => { return acc + val}, 0)}
+                memeIndex={meme.index}
               />)
             }
           </div>

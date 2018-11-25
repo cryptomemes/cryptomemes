@@ -47,11 +47,6 @@ class SellSharesModal extends Component {
     })
   }
 
-  handleClick = () => {
-    console.log('clicking')
-    alert(JSON.stringify(this.state))
-  }
-
   render() {
     const { memeTitle } = this.props
     const { visible, confirmLoading, ModalText, percentage } = this.state;
