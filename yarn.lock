@@ -1939,7 +1939,7 @@ bluebird@^2.9.34:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
   integrity sha1-U0uQM8AiyVecVro7Plpcqvu2UOE=
 
-bluebird@^3.1.1, bluebird@^3.5.0:
+bluebird@^3.1.1, bluebird@^3.5.0, bluebird@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
@@ -9161,6 +9161,14 @@ progress@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.1.tgz#c9242169342b1c29d275889c95734621b1952e31"
   integrity sha512-OE+a6vzqazc+K6LxJrX5UPyKFvGnL5CYmq2jFGNIBWHpc4QyE49/YOumcrpQFJpfejmvRtbJzgO1zPmMCqlbBg==
+
+promise-poller@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/promise-poller/-/promise-poller-1.7.0.tgz#76788d8d9470af6b604c14592a3d7f93f4c393ee"
+  integrity sha512-wY/zfF06bC+DHbjG8ja8YZsJgg2gw2KYHKa3hBJI1slqBTskGcPg4PEX2K7dbKgVtw9G88MXLPePgA8KtZNqpQ==
+  dependencies:
+    bluebird "^3.5.3"
+    debug "^4.1.0"
 
 promise-to-callback@^1.0.0:
   version "1.0.0"
