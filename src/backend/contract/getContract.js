@@ -9,7 +9,7 @@ async function getContract() {
         contractAddress, {
           data: contractBytecode,
           from: web3.eth.accounts.wallet[0].address,
-          gas: 200000,
+          gas: 200000
         }
     )
     return { contract: contract.methods, web3: web3 };

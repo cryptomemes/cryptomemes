@@ -5,7 +5,7 @@ import updateMemePrices from './contract/updateMemePrices';
 (async () => {
   console.log('--- Initial memes fetch on index.js for testing --- ')
   await getMemes();
-  // await updateMemePrices([ { index: 0, price: 100} ])
+  // await updateMemePrices([[0],[100]])
   const app = await server();
   app.listen(app.get('port'), () => {
     console.log('Server running at ', app.get('port'));

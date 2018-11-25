@@ -1,4 +1,5 @@
 import getMemes from './contract/getMemes'
+import updateMemePrices from './contract/updateMemePrices'
 
 const bracket = [
     { min: -Infinity, max: 4, value: 1.0 },
@@ -45,12 +46,20 @@ export const poll = async (app) => {
     console.log('polling...')
     const memes = await getMemes()
     const viralities = memes.map(meme => {
-        const { id, upvotes } = meme
+        const { id, upvotes, basePrice } = meme
+        const { rate, value, timestamp } = computeVirality(upvotes)
+        const newPrice = parseInt((basePrice * value).toFixed(0))
         return {
-            id,
-            ...computeVirality(upvotes),
+            id, rate, value, timestamp, newPrice 
         }
     })
+
+    const indexes = memes.map(meme => meme.id);
+    const prices = viralities.map(v => v.newPrice);
+    console.log(indexes)
+    console.log(prices)
+    await updateMemePrices([indexes, prices])
+
     return app.service('/api/memes').create(viralities).then(r => console.log('success', r)).catch(e => console.error(e))
 }
 
