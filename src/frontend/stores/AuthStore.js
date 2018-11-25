@@ -31,8 +31,10 @@ export default class AuthStore {
         publicAddress,
         strategy: 'metamask',
       });
+
       const payload = await app.passport.verifyJWT(token.accessToken);
       const user = await app.service('api/users').get(payload.userId);
+
       this.root.userStore.setLoggedInUser(user);
     } catch (e) {
       notification.open({
@@ -44,8 +46,8 @@ export default class AuthStore {
 
   @action.bound
   async signup(username, password) {
-    const { web3Store, web3Store: { web3 } } = this.root;
-    const publicAddress = web3Store.userAddress;
+    const { web3Store, web3Store: { web3, getUserAddress } } = this.root;
+    const publicAddress = await getUserAddress();
     console.log('address:', publicAddress);
     if (!publicAddress) throw new Error('No user in metamask');
     if (!web3) throw new Error('No web3 istance found');
@@ -54,9 +56,8 @@ export default class AuthStore {
     let user = users[0];
 
     if (users.length === 0) {
-      user = await app.service('api/users').create({ username, password });
+      user = await app.service('api/users').create({ username, password, publicAddress });
     }
-
     const signature = await web3.eth.personal.sign(web3.utils.fromUtf8(`I am signing my one-time nonce: ${user.nonce}`), user.publicAddress);
     await this.signinWithMetamask(signature, user.publicAddress);
   }

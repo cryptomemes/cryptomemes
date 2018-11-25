@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 
 export default class Web3Store {
   @observable web3;
-  @observable userAddress = process.env.PUBLIC_ADDRESS;
+  @observable userAddress
   constructor(root) {
     this.root = root;
   }
