@@ -20,6 +20,7 @@ contract MemeFactory is Admin {
     bytes32 photoImage;
     bytes32 title;
     uint price;
+    uint basePrice;
     address[] owners;
     mapping (address => bool) hasVoted;
     mapping (address => uint) ownersByShares;
@@ -37,6 +38,7 @@ contract MemeFactory is Admin {
       photoImage: photoImage,
       title: title,
       price: msg.value,
+      basePrice: msg.value,
       owners: new address[](0),
       upvotesIndex: 1,
       sellablesIndex: 0

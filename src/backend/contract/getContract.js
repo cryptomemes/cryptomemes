@@ -1,28 +1,18 @@
 import Web3 from 'web3'
-import TruffleContract from 'truffle-contract';
-import MemeFactory from '../../../build/contracts/MemeFactory.json';
-
-function fixTruffleContractCompatibilityIssue(contract) {
-    if (typeof contract.currentProvider.sendAsync !== "function") {
-        contract.currentProvider.sendAsync = function() {
-            return contract.currentProvider.send.apply(
-                contract.currentProvider, arguments
-            );
-        };
-    }
-    return contract;
-}
+import { contractABI, contractBytecode, contractAddress, ropstenProvider} from './contractVariables';
 
 async function getContract() {
-    const provider = 'https://ropsten.infura.io/4j50CPIg7m1Fp24GLDrR'
-    const web3 = new Web3(new Web3.providers.HttpProvider(provider))
-    const contractAddress = '0xe501dcf3ebd76f0744091e6d8751ba2ce2a8f2e4' // add as env variable
-    const Contract = await TruffleContract(MemeFactory);
-    Contract.setProvider(web3.currentProvider);
-    const fixedContract = fixTruffleContractCompatibilityIssue(Contract)
-    await fixedContract.deployed();
-    const memeContract = fixedContract.at(contractAddress);
-    return memeContract;
+    let web3 = new Web3(new Web3.providers.HttpProvider(ropstenProvider));
+    web3.eth.accounts.wallet.add(process.env.ADMIN_PRIVATE_KEY);
+    let contract = new web3.eth.Contract(
+        contractABI,
+        contractAddress, {
+          data: contractBytecode,
+          from: web3.eth.accounts.wallet[0].address,
+          gas: 200000,
+        }
+    )
+    return { contract: contract.methods, web3: web3 };
 }
 
 export default getContract
