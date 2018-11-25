@@ -8,6 +8,8 @@ import configuration from '@feathersjs/configuration';
 import allServices from './services/';
 import authentication from './authentication';
 import upload from './upload';
+import promisePoller from 'promise-poller'
+import { poll } from './virality'
 
 const app = express(feathers());
 
@@ -42,6 +44,10 @@ const server = async () => {
   const db = await MongoClient.connect(app.get('mongoURI'));
   app.configure(authentication)
   app.configure(allServices(db));
+  const poller = promisePoller({
+    taskFn: async () => { poll(app) },
+    interval: 60000
+  })
   return app;
 };
 

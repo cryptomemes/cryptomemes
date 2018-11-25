@@ -21,7 +21,7 @@ describe('Virality', () => {
     afterEach(() => MockDate.reset())
 
     it('computes virality', () => {
-        const value = computeVirality(fixtures)
+        const {value} = computeVirality(fixtures)
         expect(value).to.be.equal(1.0)
         // console.log('result', value)
     })
@@ -33,7 +33,7 @@ describe('Virality', () => {
         MockDate.set('10/15/2018 13:01')
         timestamps = timestamps.concat(generateFixtures(30))
         // MockDate.set('10/15/2018 13:02')
-        const value = computeVirality(timestamps)
+        const {value} = computeVirality(timestamps)
         expect(value).to.be.equal(7.0)
     })
 
@@ -44,19 +44,19 @@ describe('Virality', () => {
         MockDate.set('10/15/2018 13:01')
         timestamps = timestamps.concat(generateFixtures(30))
         MockDate.set('10/15/2018 13:02')
-        const value = computeVirality(timestamps)
+        const {value} = computeVirality(timestamps)
         expect(value).to.be.equal(3.0)
     })
 
     it('computes virality max bracket, 700', () => {
         const timestamps = generateFixtures(700)
-        const value = computeVirality(timestamps)
+        const {value} = computeVirality(timestamps)
         expect(value).to.be.equal(50.0)
     })
 
     it('computes virality max bracket, 1500', () => {
         const timestamps = generateFixtures(1500)
-        const value = computeVirality(timestamps)
+        const {value} = computeVirality(timestamps)
         expect(value).to.be.equal(130.0)
     })
 })

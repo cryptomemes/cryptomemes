@@ -1,3 +1,5 @@
+import getMemes from './contract/getMemes'
+
 const bracket = [
     { min: -Infinity, max: 4, value: 1.0 },
     { min: 5, max: 9, value: 2.0 },
@@ -35,7 +37,22 @@ const computeVirality = (upvotes) => {
     const previousRate = upvotes.filter(upvote => twoMinutesAgo <= upvote && oneMinuteAgo > upvote).length
     const acceleration = currentRate - previousRate
     const currentBracket = bracket.find(entry => entry.min <= acceleration && entry.max >= acceleration )
-    return isMaximum(currentBracket) ? getMultiplierValue(acceleration, currentBracket) : currentBracket.value 
+    const value = isMaximum(currentBracket) ? getMultiplierValue(acceleration, currentBracket) : currentBracket.value 
+    return { rate: acceleration, value, timestamp: now }
+}
+
+export const poll = async (app) => {
+    console.log('polling...')
+    console.log('app', app)
+    const memes = await getMemes()
+    const viralities = memes.map(meme => {
+        const { id, upvotes } = meme
+        return {
+            id,
+            ...computeVirality(upvotes),
+        }
+    })
+    return app.service('/api/memes').create(viralities).then().catch(e => console.error(e))
 }
 
 export default computeVirality
