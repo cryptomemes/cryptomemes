@@ -16,13 +16,12 @@ function fixTruffleContractCompatibilityIssue(contract) {
 async function getContract() {
     const provider = 'https://ropsten.infura.io/4j50CPIg7m1Fp24GLDrR'
     const web3 = new Web3(new Web3.providers.HttpProvider(provider))
-    const contractAddress = '0x1b90de8b5d368c468aa72ed904fb8c05b5714b00'
+    const contractAddress = '0xe501dcf3ebd76f0744091e6d8751ba2ce2a8f2e4' // add as env variable
     const Contract = await TruffleContract(MemeFactory);
     Contract.setProvider(web3.currentProvider);
     const fixedContract = fixTruffleContractCompatibilityIssue(Contract)
     await fixedContract.deployed();
     const memeContract = fixedContract.at(contractAddress);
-    const res = await memeContract.getMemesLength();
     return memeContract;
 }
 

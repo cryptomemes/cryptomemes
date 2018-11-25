@@ -1,5 +1,4 @@
 import { observable, action } from 'mobx';
-import { notification } from 'antd';
 import app from '../client';
 
 export default class UserStore {
