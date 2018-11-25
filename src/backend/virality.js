@@ -43,7 +43,6 @@ const computeVirality = (upvotes) => {
 
 export const poll = async (app) => {
     console.log('polling...')
-    console.log('app', app)
     const memes = await getMemes()
     const viralities = memes.map(meme => {
         const { id, upvotes } = meme
@@ -52,7 +51,7 @@ export const poll = async (app) => {
             ...computeVirality(upvotes),
         }
     })
-    return app.service('/api/memes').create(viralities).then().catch(e => console.error(e))
+    return app.service('/api/memes').create(viralities).then(r => console.log('success', r)).catch(e => console.error(e))
 }
 
 export default computeVirality

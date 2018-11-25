@@ -1,5 +1,6 @@
 import server from './server';
 import getMemes from './contract/getMemes';
+import promisePoller from 'promise-poller'
 
 (async () => {
   console.log('--- Initial memes fetch on index.js for testing --- ')

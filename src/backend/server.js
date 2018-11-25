@@ -45,8 +45,11 @@ const server = async () => {
   app.configure(authentication)
   app.configure(allServices(db));
   const poller = promisePoller({
-    taskFn: async () => { poll(app) },
-    interval: 60000
+    taskFn: async () => { await poll(app) },
+    interval: 60000,
+    shouldContinue: () => {
+      return true;
+    }
   })
   return app;
 };
