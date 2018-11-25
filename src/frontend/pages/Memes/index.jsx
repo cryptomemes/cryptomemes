@@ -72,7 +72,7 @@ class MemesPage extends Component {
     const { authStore: { logout }, memeStore: { memes, isMemeFetching } } = this.props
     return (
       <Fragment>
-        <NavBar />
+        <NavBar logout={logout}/>
         <MemeContainer>
           {
             isMemeFetching ? <Loader /> :

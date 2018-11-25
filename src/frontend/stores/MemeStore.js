@@ -78,7 +78,7 @@ export default class MemeStore {
   async buyMeme(memeIndex, buyPercentage) {
     try {
       const currentMeme = this.memes.find(meme => meme.index === memeIndex)
-      const buyingPrice = currentMeme.price * (buyPercentage/100)
+      const buyingPrice = currentMeme.price * (buyPercentage)
       await this.memeContract.buyMemeShares(memeIndex, buyPercentage, { from: await this.root.web3Store.getUserAddress(), value: buyingPrice})
     } catch (e) {
       console.log(e)
