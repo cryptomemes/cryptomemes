@@ -5,7 +5,7 @@ contract Admin {
     mapping (address => bool) admins;
     
     constructor() public {
-        admins[0x0a727d92742cc4044B1b65a20b8dCDA88cCc7462] = true;
+        admins[0x07520d07ad25028695415a1f94a13ab0896466dd] = true;
     }
     
     modifier onlyOwner() {
@@ -14,7 +14,7 @@ contract Admin {
     }
     
     modifier onlyAdmin() {
-        require(admins[msg.sender] == true);
+        require(admins[msg.sender] == true || msg.sender == owner);
         _;
     }
     
