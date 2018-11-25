@@ -16,6 +16,7 @@ contract MemeFactory is Admin {
   }
 
   struct Meme {
+    uint index;
     bytes32 photoImage;
     bytes32 title;
     uint price;
@@ -32,6 +33,7 @@ contract MemeFactory is Admin {
     require(msg.value > 0, "Price should be greater than zero");
 
     Meme memory meme = Meme({
+      index: memes.length,
       photoImage: photoImage,
       title: title,
       price: msg.value,
