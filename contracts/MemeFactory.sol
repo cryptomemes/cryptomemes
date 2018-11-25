@@ -103,6 +103,14 @@ contract MemeFactory is Admin {
     meme.price = price;
   }
   
+  function batchUpdateMemePrices(uint[] memory memeIndexes, uint[] memory prices) public onlyAdmin onlyOwner {
+    require(memeIndexes.length == prices.length);
+    for (uint i = 0; i < memeIndexes.length; i++) {
+        Meme storage meme = memes[i];
+        meme.price = prices[i];
+    }
+  }
+  
   function getMemesLength() public view returns (uint) {
       return memes.length;
   }
@@ -126,5 +134,12 @@ contract MemeFactory is Admin {
 
     return (_upvotes, _sellabes, meme.owners);
    }
+
+    function hasUserVoted(uint memeIndex) public view returns (
+      bool
+    ) {
+      Meme storage m = memes[memeIndex];
+      return m.hasVoted[msg.sender];
+    }
   
 }
