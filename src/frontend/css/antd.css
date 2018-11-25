@@ -1,10 +1,15 @@
+
+body {
+  font-family: "Istok Web";
+}
+
 .logo {
   width: 120px;
   height: 31px;
-  background: papayawhip;
+  font-family: "Permanent Marker";
+  /* background: rgba(212,12,2,.2); */
   margin: 16px 24px 16px 0;
   float: left;
-  border: 1px solid #fff;
 }
 
 .upload-form > .input {
@@ -26,7 +31,7 @@
 }
 
 .logo .logo:hover {
-  color: #001529;
+  /* color: #001529; */
 }
 
 .logo > .text {

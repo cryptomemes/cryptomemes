@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import awaitAllPromises from '../../utils/awaitAllPromises';
 import sanitizeMemes from '../../utils/sanitizeMemes';
 
@@ -6,6 +6,7 @@ export default class MemeStore {
   @observable memes = [];
   @observable isMemeFetching;
   @observable memeContract;
+  @observable usersMemes = []
 
   constructor(root) {
     this.root = root;
@@ -55,5 +56,12 @@ export default class MemeStore {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  @action.bound
+  async getUserMemes() {
+    const userAddress = await this.root.web3Store.getUserAddress();
+    console.log(this.memes)
+    this.usersMemes = this.memes.filter(meme => meme.owners.map(owner => owner.toString().toUpperCase()).includes(userAddress.toString().toUpperCase())) 
   }
 }
