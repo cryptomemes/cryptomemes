@@ -36,6 +36,8 @@ class SellSharesModal extends Component {
   handleCancel = () => {
     this.setState({
       visible: false,
+      confirmLoading: false,
+      percentage: 0
     });
   }
 
